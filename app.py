@@ -3,9 +3,13 @@ from dash import dcc
 from dash import html
 import pandas as pd
 import plotly.graph_objs as go
+# from gevent.pywsgi import WSGIServer
 
 app = dash.Dash()
-application = app.server
+
+# application = WSGIServer(('', 5000), app)
+# http_server.serve_forever()
+# application = app.server
 
 df = pd.read_csv(
     'https://gist.githubusercontent.com/chriddyp/' +
