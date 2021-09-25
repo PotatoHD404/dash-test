@@ -1,3 +1,3 @@
-from app import app
+from app import streamlit_server
 
-application = app.server
+application = streamlit_server

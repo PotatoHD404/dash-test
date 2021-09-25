@@ -1,50 +1,28 @@
-import dash
-from dash import dcc
-from dash import html
-import pandas as pd
-import plotly.graph_objs as go
-# from gevent.pywsgi import WSGIServer
+import streamlit as st
+import streamlit.server.server as streamlit_server
+x = st.slider('Select a value')
+st.write(x, 'squared is', x * x)
+# st.
+# if __name__ == "__main__":
+#     pass
 
-app = dash.Dash()
 
-# application = WSGIServer(('', 5000), app)
-# http_server.serve_forever()
-# application = app.server
+# from streamlit.cli import main
+# from tornado.wsgi import WSGIContainer
+# from tornado.web import FallbackHandler
 
-df = pd.read_csv(
-    'https://gist.githubusercontent.com/chriddyp/' +
-    '5d1ea79569ed194d432e56108a04d188/raw/' +
-    'a9f9e8076b837d541398e999dcbac2b2826a81f8/' +
-    'gdp-life-exp-2007.csv')
+# from dtale.app import build_app
 
-app.layout = html.Div([
-    dcc.Graph(
-        id='life-exp-vs-gdp',
-        figure={
-            'data': [
-                go.Scatter(
-                    x=df[df['continent'] == i]['gdp per capita'],
-                    y=df[df['continent'] == i]['life expectancy'],
-                    text=df[df['continent'] == i]['country'],
-                    mode='markers',
-                    opacity=0.8,
-                    marker={
-                        'size': 15,
-                        'line': {'width': 0.5, 'color': 'white'}
-                    },
-                    name=i
-                ) for i in df.continent.unique()
-            ],
-            'layout': go.Layout(
-                xaxis={'type': 'log', 'title': 'GDP Per Capita'},
-                yaxis={'title': 'Life Expectancy'},
-                margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                legend={'x': 0, 'y': 1},
-                hovermode='closest'
-            )
-        }
-    )
-])
 
-if __name__ == '__main__':
-    app.run_server()
+# orig_start_listening = streamlit_server.start_listening
+
+
+# def _override_start_listening(app):
+#     dtale_app_obj = build_app(reaper_on=False)
+#
+#     tr = WSGIContainer(dtale_app_obj)
+#     app.add_handlers(r".*", [(".*dtale.*", FallbackHandler, dict(fallback=tr))])
+#     orig_start_listening(app)
+
+
+# streamlit_server.start_listening = _override_start_listening
