@@ -1,0 +1,19 @@
+{
+    "builds": [
+        {
+            "src": "app.py",
+            "use": "@potatohd/vercel-package-installer1",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.8",
+                "wsgiApplicationName": "app"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "app.py"
+        }
+    ]
+}
